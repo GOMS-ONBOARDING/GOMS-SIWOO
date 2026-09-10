@@ -7,16 +7,9 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		60084B8130523EF2003791E2 /* UIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitApp.swift; sourceTree = "<group>"; };
 		602939A53051AE60004ECB97 /* UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		602939A73051AE60004ECB97 /* UIKit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = UIKit;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		602939A23051AE60004ECB97 /* Frameworks */ = {
@@ -29,10 +22,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60084B7C30523E6C003791E2 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				60084B7D30523E78003791E2 /* App */,
+				60084B7E30523E82003791E2 /* Model */,
+				60084B7F30523E92003791E2 /* Data */,
+				60084B8030523E99003791E2 /* Feature */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		60084B7D30523E78003791E2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				60084B8130523EF2003791E2 /* UIKitApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		60084B7E30523E82003791E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		60084B7F30523E92003791E2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		60084B8030523E99003791E2 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
 		6029399C3051AE60004ECB97 = {
 			isa = PBXGroup;
 			children = (
-				602939A73051AE60004ECB97 /* UIKit */,
+				60084B7C30523E6C003791E2 /* UIKit */,
 				602939A63051AE60004ECB97 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,9 +92,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				602939A73051AE60004ECB97 /* UIKit */,
 			);
 			name = UIKit;
 			packageProductDependencies = (

@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		60084B8130523EF2003791E2 /* UIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitApp.swift; sourceTree = "<group>"; };
+		60084B82305298EB003791E2 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		602939A53051AE60004ECB97 /* UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,6 +45,7 @@
 		60084B7E30523E82003791E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				60084B82305298EB003791E2 /* Student.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

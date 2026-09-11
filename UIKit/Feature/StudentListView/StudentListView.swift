@@ -1,0 +1,58 @@
+//
+//  StudentListView.swift
+//  UIKit
+//
+//  Created by 이시우 on 9/11/26.
+//
+
+import UIKit
+
+final class StudentListViewController: UIViewController {
+    private let students = StudentDummyData.students
+
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemBackground
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 82
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        tableView.showsVerticalScrollIndicator = false
+        return tableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "학생 목록"
+        view.backgroundColor = .systemBackground
+
+        tableView.dataSource = self
+        tableView.register(StudentListCell.self, forCellReuseIdentifier: StudentListCell.reuseIdentifier)
+
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+}
+
+extension StudentListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        students.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: StudentListCell.reuseIdentifier,
+            for: indexPath
+        ) as? StudentListCell else {
+            return UITableViewCell()
+        }
+
+        cell.configure(with: students[indexPath.row])
+        return cell
+    }
+}

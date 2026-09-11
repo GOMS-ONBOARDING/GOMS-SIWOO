@@ -12,6 +12,7 @@
 		60084B833052A71D003791E2 /* StudentDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDummyData.swift; sourceTree = "<group>"; };
 		60084B863053DC8D003791E2 /* StudentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
 		60084B8B3053F810003791E2 /* StudentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListCell.swift; sourceTree = "<group>"; };
+		60084B8D30540100003791E2 /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 		602939A53051AE60004ECB97 /* UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +22,7 @@
 		60084B893053F001003791E2 /* StudentDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B833052A71D003791E2 /* StudentDummyData.swift */; };
 		60084B8A3053F001003791E2 /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B863053DC8D003791E2 /* StudentListView.swift */; };
 		60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8B3053F810003791E2 /* StudentListCell.swift */; };
+		60084B8E30540100003791E2 /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8D30540100003791E2 /* StudentDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		60084B853053DC71003791E2 /* StudentDetail */ = {
 			isa = PBXGroup;
 			children = (
+				60084B8D30540100003791E2 /* StudentDetailView.swift */,
 			);
 			path = StudentDetail;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				60084B893053F001003791E2 /* StudentDummyData.swift in Sources */,
 				60084B8A3053F001003791E2 /* StudentListView.swift in Sources */,
 				60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */,
+				60084B8E30540100003791E2 /* StudentDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

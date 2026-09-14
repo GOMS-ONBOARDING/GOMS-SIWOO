@@ -1,5 +1,5 @@
 //
-//  StudentDetailView.swift
+//  StudentDetailViewController.swift
 //  UIKit
 //
 

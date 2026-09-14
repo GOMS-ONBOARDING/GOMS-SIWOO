@@ -27,9 +27,7 @@ final class StudentListCell: UITableViewCell {
         nameLabel.text = student.name
         studentNumberLabel.text = student.studentNumber
         statusLabel.text = student.status.rawValue
-        statusLabel.backgroundColor = student.status == .outing
-            ? .systemOrange.withAlphaComponent(0.16)
-            : .systemGreen.withAlphaComponent(0.16)
+        statusLabel.backgroundColor = student.status.badgeBackgroundColor
     }
 }
 

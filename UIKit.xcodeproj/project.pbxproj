@@ -13,6 +13,7 @@
 		60084B863053DC8D003791E2 /* StudentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
 		60084B8B3053F810003791E2 /* StudentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListCell.swift; sourceTree = "<group>"; };
 		60084B8D30540100003791E2 /* StudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailViewController.swift; sourceTree = "<group>"; };
+		60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentStatus+Presentation.swift"; sourceTree = "<group>"; };
 		602939A53051AE60004ECB97 /* UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -23,6 +24,7 @@
 		60084B8A3053F001003791E2 /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B863053DC8D003791E2 /* StudentListView.swift */; };
 		60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8B3053F810003791E2 /* StudentListCell.swift */; };
 		60084B8E30540100003791E2 /* StudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8D30540100003791E2 /* StudentDetailViewController.swift */; };
+		60084B9030550000003791E2 /* StudentStatus+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				60084B863053DC8D003791E2 /* StudentListView.swift */,
 				60084B8B3053F810003791E2 /* StudentListCell.swift */,
+				60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */,
 			);
 			path = StudentListView;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				60084B8A3053F001003791E2 /* StudentListView.swift in Sources */,
 				60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */,
 				60084B8E30540100003791E2 /* StudentDetailViewController.swift in Sources */,
+				60084B9030550000003791E2 /* StudentStatus+Presentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

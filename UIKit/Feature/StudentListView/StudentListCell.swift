@@ -42,6 +42,7 @@ private extension StudentListCell {
         cardView.layer.cornerRadius = 14
 
         nameLabel.font = .preferredFont(forTextStyle: .headline)
+        nameLabel.numberOfLines = 1
         studentNumberLabel.font = .preferredFont(forTextStyle: .subheadline)
         studentNumberLabel.textColor = .secondaryLabel
 

@@ -7,16 +7,25 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		60084B8130523EF2003791E2 /* UIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitApp.swift; sourceTree = "<group>"; };
+		60084B82305298EB003791E2 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		60084B833052A71D003791E2 /* StudentDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDummyData.swift; sourceTree = "<group>"; };
+		60084B863053DC8D003791E2 /* StudentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListView.swift; sourceTree = "<group>"; };
+		60084B8B3053F810003791E2 /* StudentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListCell.swift; sourceTree = "<group>"; };
+		60084B8D30540100003791E2 /* StudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailViewController.swift; sourceTree = "<group>"; };
+		60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentStatus+Presentation.swift"; sourceTree = "<group>"; };
 		602939A53051AE60004ECB97 /* UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		602939A73051AE60004ECB97 /* UIKit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = UIKit;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXBuildFile section */
+		60084B873053F001003791E2 /* UIKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8130523EF2003791E2 /* UIKitApp.swift */; };
+		60084B883053F001003791E2 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B82305298EB003791E2 /* Student.swift */; };
+		60084B893053F001003791E2 /* StudentDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B833052A71D003791E2 /* StudentDummyData.swift */; };
+		60084B8A3053F001003791E2 /* StudentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B863053DC8D003791E2 /* StudentListView.swift */; };
+		60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8B3053F810003791E2 /* StudentListCell.swift */; };
+		60084B8E30540100003791E2 /* StudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8D30540100003791E2 /* StudentDetailViewController.swift */; };
+		60084B9030550000003791E2 /* StudentStatus+Presentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		602939A23051AE60004ECB97 /* Frameworks */ = {
@@ -29,10 +38,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60084B7C30523E6C003791E2 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				60084B7D30523E78003791E2 /* App */,
+				60084B7E30523E82003791E2 /* Model */,
+				60084B7F30523E92003791E2 /* Data */,
+				60084B8030523E99003791E2 /* Feature */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		60084B7D30523E78003791E2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				60084B8130523EF2003791E2 /* UIKitApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		60084B7E30523E82003791E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60084B82305298EB003791E2 /* Student.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		60084B7F30523E92003791E2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				60084B833052A71D003791E2 /* StudentDummyData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		60084B8030523E99003791E2 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				60084B843053DC64003791E2 /* StudentListView */,
+				60084B853053DC71003791E2 /* StudentDetail */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		60084B843053DC64003791E2 /* StudentListView */ = {
+			isa = PBXGroup;
+			children = (
+				60084B863053DC8D003791E2 /* StudentListView.swift */,
+				60084B8B3053F810003791E2 /* StudentListCell.swift */,
+				60084B8F30550000003791E2 /* StudentStatus+Presentation.swift */,
+			);
+			path = StudentListView;
+			sourceTree = "<group>";
+		};
+		60084B853053DC71003791E2 /* StudentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				60084B8D30540100003791E2 /* StudentDetailViewController.swift */,
+			);
+			path = StudentDetail;
+			sourceTree = "<group>";
+		};
 		6029399C3051AE60004ECB97 = {
 			isa = PBXGroup;
 			children = (
-				602939A73051AE60004ECB97 /* UIKit */,
+				60084B7C30523E6C003791E2 /* UIKit */,
 				602939A63051AE60004ECB97 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,9 +130,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				602939A73051AE60004ECB97 /* UIKit */,
 			);
 			name = UIKit;
 			packageProductDependencies = (
@@ -119,6 +187,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60084B873053F001003791E2 /* UIKitApp.swift in Sources */,
+				60084B883053F001003791E2 /* Student.swift in Sources */,
+				60084B893053F001003791E2 /* StudentDummyData.swift in Sources */,
+				60084B8A3053F001003791E2 /* StudentListView.swift in Sources */,
+				60084B8C3053F810003791E2 /* StudentListCell.swift in Sources */,
+				60084B8E30540100003791E2 /* StudentDetailViewController.swift in Sources */,
+				60084B9030550000003791E2 /* StudentStatus+Presentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +325,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = NO;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = NO;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
@@ -266,6 +341,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = aa.UIKit;
+				PRODUCT_MODULE_NAME = UIKitPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -292,8 +368,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
-				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = NO;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = NO;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
@@ -308,6 +384,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = aa.UIKit;
+				PRODUCT_MODULE_NAME = UIKitPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;

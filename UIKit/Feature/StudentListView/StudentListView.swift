@@ -8,7 +8,7 @@
 import UIKit
 
 final class StudentListViewController: UIViewController {
-    private let students = StudentDummyData.students
+    private var students = StudentDummyData.students
 
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -61,7 +61,15 @@ extension StudentListViewController: UITableViewDataSource {
 extension StudentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = students[indexPath.row]
-        let detailViewController = StudentDetailViewController(student: student)
+        let detailViewController = StudentDetailViewController(student: student) { [weak self] updatedStudent in
+            guard let self,
+                  let updatedIndex = self.students.firstIndex(where: { $0.id == updatedStudent.id }) else {
+                return
+            }
+
+            self.students[updatedIndex] = updatedStudent
+            self.tableView.reloadRows(at: [IndexPath(row: updatedIndex, section: 0)], with: .none)
+        }
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

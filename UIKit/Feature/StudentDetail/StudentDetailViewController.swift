@@ -7,11 +7,13 @@ import UIKit
 
 final class StudentDetailViewController: UIViewController {
     private var student: Student
+    private let onStatusChange: (Student) -> Void
     private let statusRow: DetailInfoRow
     private let statusSegmentedControl = UISegmentedControl(items: ["교내", "외출"])
 
-    init(student: Student) {
+    init(student: Student, onStatusChange: @escaping (Student) -> Void) {
         self.student = student
+        self.onStatusChange = onStatusChange
         self.statusRow = DetailInfoRow(title: "현재 상태", value: student.status.rawValue)
         super.init(nibName: nil, bundle: nil)
     }
@@ -63,6 +65,7 @@ private extension StudentDetailViewController {
     @objc func statusDidChange() {
         student.status = statusSegmentedControl.selectedSegmentIndex == 0 ? .inSchool : .outing
         statusRow.update(value: student.status.rawValue)
+        onStatusChange(student)
     }
 }
 

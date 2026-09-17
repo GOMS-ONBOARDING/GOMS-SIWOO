@@ -27,6 +27,7 @@ final class StudentListViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(StudentListCell.self, forCellReuseIdentifier: StudentListCell.reuseIdentifier)
 
         view.addSubview(tableView)
@@ -54,5 +55,13 @@ extension StudentListViewController: UITableViewDataSource {
 
         cell.configure(with: students[indexPath.row])
         return cell
+    }
+}
+
+extension StudentListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = students[indexPath.row]
+        let detailViewController = StudentDetailViewController(student: student)
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

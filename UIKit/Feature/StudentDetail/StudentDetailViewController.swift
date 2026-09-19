@@ -6,10 +6,15 @@
 import UIKit
 
 final class StudentDetailViewController: UIViewController {
-    private let student: Student
+    private var student: Student
+    private let onStatusChange: (Student) -> Void
+    private let statusRow: DetailInfoRow
+    private let statusSegmentedControl = UISegmentedControl(items: ["교내", "외출"])
 
-    init(student: Student) {
+    init(student: Student, onStatusChange: @escaping (Student) -> Void) {
         self.student = student
+        self.onStatusChange = onStatusChange
+        self.statusRow = DetailInfoRow(title: "현재 상태", value: student.status.rawValue)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -22,31 +27,51 @@ final class StudentDetailViewController: UIViewController {
         title = "학생 상세"
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .systemBackground
+        configureStatusSegmentedControl()
         configureLayout()
     }
 }
 
 private extension StudentDetailViewController {
+    func configureStatusSegmentedControl() {
+        statusSegmentedControl.selectedSegmentIndex = student.status == .inSchool ? 0 : 1
+        statusSegmentedControl.selectedSegmentTintColor = .systemBlue
+        statusSegmentedControl.accessibilityLabel = "학생 상태 변경"
+        statusSegmentedControl.addTarget(self, action: #selector(statusDidChange), for: .valueChanged)
+    }
+
     func configureLayout() {
         let infoStack = UIStackView(arrangedSubviews: [
             DetailInfoRow(title: "이름", value: student.name),
             DetailInfoRow(title: "학번", value: student.studentNumber),
-            DetailInfoRow(title: "현재 상태", value: student.status.rawValue)
+            statusRow
         ])
-        infoStack.translatesAutoresizingMaskIntoConstraints = false
         infoStack.axis = .vertical
         infoStack.spacing = 24
 
-        view.addSubview(infoStack)
+        let contentStack = UIStackView(arrangedSubviews: [infoStack, statusSegmentedControl])
+        contentStack.translatesAutoresizingMaskIntoConstraints = false
+        contentStack.axis = .vertical
+        contentStack.spacing = 32
+
+        view.addSubview(contentStack)
         NSLayoutConstraint.activate([
-            infoStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            infoStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            infoStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            contentStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            contentStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            contentStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
+    }
+
+    @objc func statusDidChange() {
+        student.status = statusSegmentedControl.selectedSegmentIndex == 0 ? .inSchool : .outing
+        statusRow.update(value: student.status.rawValue)
+        onStatusChange(student)
     }
 }
 
 private final class DetailInfoRow: UIView {
+    private let valueLabel = UILabel()
+
     init(title: String, value: String) {
         super.init(frame: .zero)
 
@@ -55,7 +80,6 @@ private final class DetailInfoRow: UIView {
         titleLabel.textColor = .secondaryLabel
         titleLabel.text = title
 
-        let valueLabel = UILabel()
         let title3Font = UIFont.preferredFont(forTextStyle: .title3)
         valueLabel.font = .systemFont(ofSize: title3Font.pointSize, weight: .semibold)
         valueLabel.text = value
@@ -72,6 +96,10 @@ private final class DetailInfoRow: UIView {
             stack.trailingAnchor.constraint(equalTo: trailingAnchor),
             stack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+
+    func update(value: String) {
+        valueLabel.text = value
     }
 
     required init?(coder: NSCoder) {

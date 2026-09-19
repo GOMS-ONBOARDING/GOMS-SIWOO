@@ -11,7 +11,7 @@ struct Student: Hashable { // Identifiable는 UIKit에서 UITableView를 사용�
     let id: UUID
     let name: String
     let studentNumber: String
-    let status: StudentStatus
+    var status: StudentStatus
 
     init(
         id: UUID = UUID(),

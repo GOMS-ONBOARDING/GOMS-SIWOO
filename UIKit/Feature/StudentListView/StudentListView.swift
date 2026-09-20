@@ -38,6 +38,17 @@ final class StudentListViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let visibleIndexPaths = tableView.indexPathsForVisibleRows ?? []
+        guard !visibleIndexPaths.isEmpty else {
+            return
+        }
+
+        tableView.reloadRows(at: visibleIndexPaths, with: .none)
+    }
 }
 
 extension StudentListViewController: UITableViewDataSource {

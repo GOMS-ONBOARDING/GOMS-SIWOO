@@ -13,6 +13,7 @@ final class StudentDetailViewController: UIViewController {
     private let latenessRow: DetailInfoRow
     private let statusSegmentedControl = UISegmentedControl(items: ["교내", "외출"])
     private let returnTimePicker = UIDatePicker()
+    private var latenessTimer: Timer?
     private let returnTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -47,6 +48,17 @@ final class StudentDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateStatusInformation()
+        startLatenessTimer()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        latenessTimer?.invalidate()
+        latenessTimer = nil
+    }
+
+    deinit {
+        latenessTimer?.invalidate()
     }
 }
 
@@ -135,6 +147,16 @@ private extension StudentDetailViewController {
             }
 
             latenessRow.update(value: student.isLate ? "지각" : "정상")
+        }
+    }
+
+    func startLatenessTimer() {
+        guard latenessTimer == nil else {
+            return
+        }
+
+        latenessTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            self?.updateStatusInformation()
         }
     }
 }

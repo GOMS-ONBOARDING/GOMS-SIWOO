@@ -12,17 +12,32 @@ struct Student: Hashable { // Identifiable는 UIKit에서 UITableView를 사용�
     let name: String
     let studentNumber: String
     var status: StudentStatus
+    var expectedReturnTime: Date?
+
+    var isLate: Bool {
+        switch status {
+        case .inSchool:
+            return false
+        case .outing:
+            guard let expectedReturnTime else {
+                return false
+            }
+            return Date() > expectedReturnTime
+        }
+    }
 
     init(
         id: UUID = UUID(),
         name: String,
         studentNumber: String,
-        status: StudentStatus
+        status: StudentStatus,
+        expectedReturnTime: Date? = nil
     ) {
         self.id = id
         self.name = name
         self.studentNumber = studentNumber
         self.status = status
+        self.expectedReturnTime = expectedReturnTime
     }
 }
 

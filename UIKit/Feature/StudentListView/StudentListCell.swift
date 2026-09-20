@@ -11,7 +11,14 @@ final class StudentListCell: UITableViewCell {
     private let cardView = UIView()
     private let nameLabel = UILabel()
     private let studentNumberLabel = UILabel()
+    private let returnTimeLabel = UILabel()
     private let statusLabel = UILabel()
+    private let returnTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "M월 d일 HH:mm"
+        return formatter
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,8 +33,23 @@ final class StudentListCell: UITableViewCell {
     func configure(with student: Student) {
         nameLabel.text = student.name
         studentNumberLabel.text = student.studentNumber
-        statusLabel.text = student.status.rawValue
-        statusLabel.backgroundColor = student.status.badgeBackgroundColor
+
+        let statusPresentation = student.listStatusPresentation
+        statusLabel.text = statusPresentation.title
+        statusLabel.backgroundColor = statusPresentation.badgeBackgroundColor
+
+        switch student.status {
+        case .inSchool:
+            returnTimeLabel.text = nil
+            returnTimeLabel.isHidden = true
+        case .outing:
+            if let expectedReturnTime = student.expectedReturnTime {
+                returnTimeLabel.text = "복귀 예정: \(returnTimeFormatter.string(from: expectedReturnTime))"
+            } else {
+                returnTimeLabel.text = "복귀 예정 시간 미설정"
+            }
+            returnTimeLabel.isHidden = false
+        }
     }
 }
 
@@ -43,6 +65,9 @@ private extension StudentListCell {
         nameLabel.numberOfLines = 1
         studentNumberLabel.font = .preferredFont(forTextStyle: .subheadline)
         studentNumberLabel.textColor = .secondaryLabel
+        returnTimeLabel.font = .preferredFont(forTextStyle: .caption1)
+        returnTimeLabel.textColor = .secondaryLabel
+        returnTimeLabel.numberOfLines = 1
 
         statusLabel.font = .preferredFont(forTextStyle: .caption1)
         statusLabel.textAlignment = .center
@@ -51,7 +76,11 @@ private extension StudentListCell {
     }
 
     func configureLayout() {
-        let textStack = UIStackView(arrangedSubviews: [nameLabel, studentNumberLabel])
+        let textStack = UIStackView(arrangedSubviews: [
+            nameLabel,
+            studentNumberLabel,
+            returnTimeLabel
+        ])
         textStack.axis = .vertical
         textStack.spacing = 4
 

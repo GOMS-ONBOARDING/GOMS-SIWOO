@@ -9,12 +9,24 @@ final class StudentDetailViewController: UIViewController {
     private var student: Student
     private let onStatusChange: (Student) -> Void
     private let statusRow: DetailInfoRow
+    private let returnTimeRow: DetailInfoRow
+    private let latenessRow: DetailInfoRow
     private let statusSegmentedControl = UISegmentedControl(items: ["교내", "외출"])
+    private let returnTimePicker = UIDatePicker()
+    private var latenessTimer: Timer?
+    private let returnTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "M월 d일 HH:mm"
+        return formatter
+    }()
 
     init(student: Student, onStatusChange: @escaping (Student) -> Void) {
         self.student = student
         self.onStatusChange = onStatusChange
         self.statusRow = DetailInfoRow(title: "현재 상태", value: student.status.rawValue)
+        self.returnTimeRow = DetailInfoRow(title: "복귀 예정", value: "설정 필요")
+        self.latenessRow = DetailInfoRow(title: "지각 여부", value: "정상")
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -28,7 +40,25 @@ final class StudentDetailViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .systemBackground
         configureStatusSegmentedControl()
+        configureReturnTimePicker()
         configureLayout()
+        updateStatusInformation()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateStatusInformation()
+        startLatenessTimer()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        latenessTimer?.invalidate()
+        latenessTimer = nil
+    }
+
+    deinit {
+        latenessTimer?.invalidate()
     }
 }
 
@@ -40,16 +70,30 @@ private extension StudentDetailViewController {
         statusSegmentedControl.addTarget(self, action: #selector(statusDidChange), for: .valueChanged)
     }
 
+    func configureReturnTimePicker() {
+        returnTimePicker.datePickerMode = .dateAndTime
+        returnTimePicker.preferredDatePickerStyle = .compact
+        returnTimePicker.locale = Locale(identifier: "ko_KR")
+        returnTimePicker.accessibilityLabel = "복귀 예정 시간"
+        returnTimePicker.addTarget(self, action: #selector(returnTimeDidChange), for: .valueChanged)
+    }
+
     func configureLayout() {
         let infoStack = UIStackView(arrangedSubviews: [
             DetailInfoRow(title: "이름", value: student.name),
             DetailInfoRow(title: "학번", value: student.studentNumber),
-            statusRow
+            statusRow,
+            returnTimeRow,
+            latenessRow
         ])
         infoStack.axis = .vertical
         infoStack.spacing = 24
 
-        let contentStack = UIStackView(arrangedSubviews: [infoStack, statusSegmentedControl])
+        let contentStack = UIStackView(arrangedSubviews: [
+            infoStack,
+            statusSegmentedControl,
+            returnTimePicker
+        ])
         contentStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.axis = .vertical
         contentStack.spacing = 32
@@ -63,9 +107,57 @@ private extension StudentDetailViewController {
     }
 
     @objc func statusDidChange() {
-        student.status = statusSegmentedControl.selectedSegmentIndex == 0 ? .inSchool : .outing
-        statusRow.update(value: student.status.rawValue)
+        switch statusSegmentedControl.selectedSegmentIndex {
+        case 0:
+            student.status = .inSchool
+            student.expectedReturnTime = nil
+        default:
+            student.status = .outing
+            student.expectedReturnTime = Date().addingTimeInterval(60 * 60)
+        }
+
+        updateStatusInformation()
         onStatusChange(student)
+    }
+
+    @objc func returnTimeDidChange() {
+        student.expectedReturnTime = returnTimePicker.date
+        updateStatusInformation()
+        onStatusChange(student)
+    }
+
+    func updateStatusInformation() {
+        statusRow.update(value: student.status.rawValue)
+
+        switch student.status {
+        case .inSchool:
+            returnTimeRow.isHidden = true
+            latenessRow.isHidden = true
+            returnTimePicker.isHidden = true
+        case .outing:
+            returnTimeRow.isHidden = false
+            latenessRow.isHidden = false
+            returnTimePicker.isHidden = false
+
+            if let expectedReturnTime = student.expectedReturnTime {
+                returnTimePicker.date = expectedReturnTime
+                returnTimeRow.update(value: returnTimeFormatter.string(from: expectedReturnTime))
+            } else {
+                returnTimeRow.update(value: "설정 필요")
+            }
+
+            latenessRow.update(value: student.isLate ? "지각" : "정상")
+        }
+    }
+
+    func startLatenessTimer() {
+        guard latenessTimer == nil else {
+            return
+        }
+
+        latenessTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+            self?.updateStatusInformation()
+        }
     }
 }
 

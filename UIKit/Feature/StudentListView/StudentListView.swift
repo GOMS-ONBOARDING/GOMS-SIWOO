@@ -15,7 +15,7 @@ final class StudentListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
-        tableView.rowHeight = 82
+        tableView.rowHeight = 96
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         tableView.showsVerticalScrollIndicator = false
         return tableView
@@ -37,6 +37,17 @@ final class StudentListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let visibleIndexPaths = tableView.indexPathsForVisibleRows ?? []
+        guard !visibleIndexPaths.isEmpty else {
+            return
+        }
+
+        tableView.reloadRows(at: visibleIndexPaths, with: .none)
     }
 }
 

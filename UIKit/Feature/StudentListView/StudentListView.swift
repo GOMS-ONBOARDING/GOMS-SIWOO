@@ -15,7 +15,7 @@ final class StudentListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
-        tableView.rowHeight = 82
+        tableView.rowHeight = 96
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         tableView.showsVerticalScrollIndicator = false
         return tableView
